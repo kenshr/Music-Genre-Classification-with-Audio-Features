@@ -1,0 +1,7 @@
+
+# Ignore jupyter notebook checkpoints and directory positioning
+.ipynb_checkpoints
+.DS_Store
+
+# Ignore data folder to omit large data files from repo
+data/
