@@ -5,3 +5,5 @@
 
 # Ignore data folder to omit large data files from repo
 data/
+
+__pycache__
