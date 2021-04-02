@@ -14,7 +14,7 @@ Music is everywhere. As of 2011, it was reported that there are over 79,000,000 
 
 [<img src='imgs/music_genre_visualization.png'>](https://www.chess.com/news/view/published-data-api)
 
-And yet, music is still constantly evolving. Some new genres that are expected to see major growth in 2021 are Synthwave, Ambient music, J-pop, and Nu Disco<sup>[3](https://www.ujam.com/blog/upcoming-music-trends-in-2021/)</sup>. With this constant growth and expansion, it's important for businesses that work with music to be able to reliably track these updates.
+And yet, music is still constantly evolving. Some new genres that are expected to see major growth in 2021 are Synthwave, Ambient music, J-pop, and Nu Disco<sup>[3](https://www.ujam.com/blog/upcoming-music-trends-in-2021/)</sup>. With this constant growth and expansion, it's important for businesses that work with music to be able to reliably track these updates. Spotify, as an example, may find it useful to
 
 This project aims to generate highly accurate and reproducible machine learning models that can assess a song's genre based on its audio features and lyrics.
 
@@ -33,6 +33,7 @@ a
 ## Machine Learning
 
 <img src='imgs/accuracy_vs_nearestneighbors.png'>
+
 
 ## Summary
 
