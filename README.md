@@ -33,7 +33,11 @@ The final dataset (omitting lyrics) contains the following features:
 
 ## Data Preparation
 
+After briefly examining the data, I noticed that there were roughly 20,000 songs that appeared multiple times in different genres in the dataset. This makes sense as songs can be classified into multiple genres. This did prove problematic, however, since my machine learning models would only be able to handle single-label classification.
 
+In order to remedy this, I removed the duplicates shrinking my dataset down from 113,000 songs to 77,000 songs. This, in turn, imposed some major class imbalances with the largest class having 985 songs while the smallest class contained only 12 songs.
+
+To mitigate the effects of class imbalance and to get better baseline performance from my models, I made the executive decision to handpick 12 of the largest and most diverse genres to use for my machine learning models. This resulted in a final dataset consisting of 10,843 songs. The genres I selected are: acoustic, alt-rock, blues, classical, country, dance, deep-house, disco, hardstyle, heavy-metal, k-pop, and tango.
 
 ## Feature Engineering
 
@@ -68,6 +72,11 @@ I wanted to see if there are any easily discernable clusters of genres across th
 Legibility between different genres is difficult because of the high number of classes but trends are still noticeable. Most notably in the Loudness vs Energy graph, we can see that blues and classical music tend to anchor towards the bottom of the chart while heavy metal and deep-house tend to sit towards the top.
 
 ## Machine Learning
+
+The models I tested for this project are kNN, Logistic Regressoin, Random, and Gradient Boosting classifiers. Out of the box, the Random Forest and Gradient Boosting classifiers performed the best by far with a 74% and 75% accuracy on the validation set. The kNN and Logistic regression models, on the other hand, started at a more modest 49% and 44% accuracy on the validation set, respectively.
+
+After tuning the hyperparamaters for the different models, these are the highest accuracies that were achieved by each model:
+
 | **Model**  | **Accuracy** |
 |:----------:|:-------------:|
 | Dummy Classifier (Baseline)   |  0.083 |
@@ -76,10 +85,12 @@ Legibility between different genres is difficult because of the high number of c
 | Random Forest  | 0.739 |
 | Gradient Boosting   | 0.751 |
 
-72, 18, 10
+We can see that Logistic Regression saw a great increase in performance but still was a ways off from Random Forest and Gradient Boosting. Even with further hyperparameter tuning, I was unable to improve the scores of the Random Forest and Gradient Boosting models. Once I saw that the Gradient Boosting model performed the best, I decided to optimize it further and perform an extensive gridsearch to find the best hyperparameters. In doing so, I was only able to replicate the accuracy I had using the out of box parameters.
 
-<img src='imgs/accuracy_vs_nearestneighbors.png'>
+Once I
+
 ![](imgs/confusion_matrix_test_set.png)
+
 ![](imgs/mean_decrease_log_loss_feature_importance.png)
 
 
