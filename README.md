@@ -16,7 +16,7 @@ Music is everywhere. As of 2011, it was reported that there are over 79,000,000 
 
 And yet, music is still constantly evolving. Some new genres that are expected to see major growth in 2021 are Synthwave, Ambient music, J-pop, and Nu Disco<sup>[3](https://www.ujam.com/blog/upcoming-music-trends-in-2021/)</sup>. With this constant growth and expansion, it's important for businesses that work with music to be able to reliably track these updates. Spotify, as an example, may find it useful to
 
-This project aims to generate highly accurate and reproducible machine learning models that can assess a song's genre based on its audio features.
+This project aims to generate highly accurate and reproducible machine learning models that can predict a song's genre based on its audio features.
 
 ## Data Pipeline
 
@@ -39,7 +39,9 @@ The duration, being in milliseconds, isn't meaningful for our purposes and is 6 
 ## Exploratory Data Analysis
 
 
-
+Valenece vs Danceability   |  Loudness vs Energy       |  Acousticness vs Energy
+:-------------------------:|:-------------------------:|:-------------------------:
+![](imgs/valence_vs_danceability_per_genre.png)  |  ![](imgs/loudness_vs_energy_per_genre.png) |  ![](imgs/acousticness_vs_energy_per_genre.png)
 
 
 a
@@ -48,6 +50,8 @@ a
 
 72, 18, 10
 <img src='imgs/accuracy_vs_nearestneighbors.png'>
+
+
 
 
 ## Summary
