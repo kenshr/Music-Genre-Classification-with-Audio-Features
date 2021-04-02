@@ -20,13 +20,11 @@ This project aims to generate highly accurate and reproducible machine learning 
 
 ## Data Pipeline
 
-In order to conduct this project, I required music data that contains genre labels. This proved to be surprisingly difficult to find. The solution I found was through the Spotipy<sup>[4](https://spotipy.readthedocs.io/en/2.17.1/)</sup> Python library. Using their search<sup>[5](https://spotipy.readthedocs.io/en/2.17.1/#spotipy.client.Spotify.search)</sup> method, I was able to pull 1,000 songs (request limit) for each genre across 113 genres. This yielded basic data for each song such as the track name, artist name, album name, and of course the genre.
+In order to conduct this project, I required music data that contains genre labels. This proved to be surprisingly difficult to find. The solution I found was through the Spotipy<sup>[4](https://spotipy.readthedocs.io/en/2.17.1/)</sup> Python library. Using their search<sup>[5](https://spotipy.readthedocs.io/en/2.17.1/#spotipy.client.Spotify.search)</sup> method, I was able to pull 1,000 songs (request limit) for each genre across 113 genres. This yielded basic data for each song such as the track name, artist name, album name, and of course the genre. The second step in this process was gathering the audio features for these songs. This was again done using Spotipy, this time leveraging the audio_features<sup>[6](https://spotipy.readthedocs.io/en/2.17.1/#spotipy.client.Spotify.audio_features)</sup> method.
 
-The second step in this process was gathering the audio features for these songs. This was again done using Spotipy, this time leveraging the audio_features<sup>[6](https://spotipy.readthedocs.io/en/2.17.1/#spotipy.client.Spotify.audio_features)</sup> method.
+I also want to (down the line) explore genre classification through Natural Language Processing with song lyrics so I set up a pipeline to collect lyrics using the LyricsGenius<sup>[7](https://github.com/johnwmillr/LyricsGenius)</sup> Python library.
 
-I also want to (down the line) explore genre classification through Natural Language Processing with song lyrics so I set up a pipeline to collect lyrics using the LyricsGenius<sup>[7](https://pypi.org/project/lyricsgenius/)</sup> Python library.
-
-All of the steps in this pipeline have been functionalized for reproducibility and can be accessed [here]('src/datapipeline.py').
+All of the steps in this pipeline have been functionalized for reproducibility and can be accessed [here](src/datapipeline.py). An **important note**, you will need to input Spotify and Genius access tokens into the file in order for the functions to run properly.
 
 The final dataset (omitting lyrics) contains the following features:
 - **Basic Track Info:** Track Name, Artist Name, Album Name, Genre, Popularity, Duration (milliseconds), Explicit, Track ID, Artist ID
@@ -34,7 +32,9 @@ The final dataset (omitting lyrics) contains the following features:
 
 ## Feature Engineering
 
-The main changes applied to this dataset were with the
+The main changes applied to this dataset were with the "Duration" and "Explicit" features.
+
+The duration, being in milliseconds, isn't meaningful for our purposes and is 6 to 7 orders of magnitude larger numerically than all of the other features. This could potentially have an adverse effect when training models or analyzing feature importances. This was easily fixed by converting the duration from milliseconds to seconds. The explicit feature is a boolean depicting if a song is, as you would expect, explicit. This was simply converted to an integer for ease of use for the machine learning models.
 
 ## Exploratory Data Analysis
 
@@ -66,4 +66,4 @@ a
 4. [Spotipy Documentation](https://spotipy.readthedocs.io/en/2.17.1/)
 5. [Spotipy Search Method](https://spotipy.readthedocs.io/en/2.17.1/#spotipy.client.Spotify.search)
 6. [Spotipy Audio Features Method](https://spotipy.readthedocs.io/en/2.17.1/#spotipy.client.Spotify.audio_features)
-7. [LyricsGenius Documentation](https://pypi.org/project/lyricsgenius/)
+7. [LyricsGenius Documentation](https://github.com/johnwmillr/LyricsGenius)
