@@ -2,6 +2,7 @@
 ## Table of Contents
 [Overview](#overview)<br/>
 [Data Pipeline](#data-pipeline)<br/>
+[Data Preparation](#data-preparation)<br/>
 [Feature Engineering](#feature-engineering)<br/>
 [Exploratory Data Analysis](#exploratory-data-analysis)<br/>
 [Machine Learning](#machine-learning)<br/>
@@ -30,6 +31,10 @@ The final dataset (omitting lyrics) contains the following features:
 - **Basic Track Info:** Track Name, Artist Name, Album Name, Genre, Popularity, Duration (milliseconds), Explicit, Track ID, Artist ID
 - **Audio Features:** Danceability, Energy, Key, Loudness, Mode, Speechiness, Acousticness, Instrumentalness, Liveness, Valence, Tempo
 
+## Data Preparation
+
+
+
 ## Feature Engineering
 
 The main changes applied to this dataset were with the "Duration" and "Explicit" features.
@@ -38,20 +43,44 @@ The duration, being in milliseconds, isn't meaningful for our purposes and is 6 
 
 ## Exploratory Data Analysis
 
+I started my EDA by creating a correlation matrix and looking for relationships between different audio features.
 
-Valenece vs Danceability   |  Loudness vs Energy       |  Acousticness vs Energy
-:-------------------------:|:-------------------------:|:-------------------------:
-![](imgs/valence_vs_danceability_per_genre.png)  |  ![](imgs/loudness_vs_energy_per_genre.png) |  ![](imgs/acousticness_vs_energy_per_genre.png)
+| Audio Features Correlation Matrix |
+:-------------------------:|
+![](imgs/audio_features_correlation_matrix.png)
 
+It turns out that there are actually quite a few strong correlations observed between the different features, and many of these make sense. Songs that carry heavy acoustic qualities often tend to be lower energy when compared to, say, a club song. The valence of a song, which indicates how "happy" a song is, shares a fairly strong correlation with the song's danceability.
 
-a
+I wanted to see if there are any easily discernable clusters of genres across these features so I took some of the strongest correlating features and plotted them on scatter plots with the points color-coated by genre.
+
+| Danceability vs Valence  |
+:-------------------------:|
+![](imgs/danceability_vs_valence_per_genre.png)
+
+| Energy vs Loudness        |
+|:-------------------------:|
+|  ![](imgs/energy_vs_loudness_per_genre.png) |
+
+| Acousticness vs Energy    |
+|:-------------------------:|
+![](imgs/acousticness_vs_energy_per_genre.png)
+
+Legibility between different genres is difficult because of the high number of classes but trends are still noticeable. Most notably in the Loudness vs Energy graph, we can see that blues and classical music tend to anchor towards the bottom of the chart while heavy metal and deep-house tend to sit towards the top.
 
 ## Machine Learning
+| **Model**  | **Accuracy** |
+|:----------:|:-------------:|
+| Dummy Classifier (Baseline)   |  0.083 |
+| kNN   |    0.501   |
+| Logistic Regression   | 0.664 |
+| Random Forest  | 0.739 |
+| Gradient Boosting   | 0.751 |
 
 72, 18, 10
+
 <img src='imgs/accuracy_vs_nearestneighbors.png'>
-
-
+![](imgs/confusion_matrix_test_set.png)
+![](imgs/mean_decrease_log_loss_feature_importance.png)
 
 
 ## Summary
@@ -60,7 +89,8 @@ a
 
 ## Future Questions
 
-a
+- Lyric-based genre classification
+- Multi-genre (Multi-label) classification
 
 ## References
 
