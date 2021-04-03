@@ -37,7 +37,7 @@ After briefly examining the data, I noticed that there were roughly 20,000 songs
 
 In order to remedy this, I removed the duplicates shrinking my dataset down from 113,000 songs to 77,000 songs. This, in turn, imposed some major class imbalances with the largest class having 985 songs while the smallest class contained only 12 songs.
 
-To mitigate the effects of class imbalance and to get better baseline performance from my models, I made the executive decision to handpick 12 of the largest and most diverse genres to use for my machine learning models. This resulted in a final dataset consisting of 10,843 songs. The genres I selected are: acoustic, alt-rock, blues, classical, country, dance, deep-house, disco, hardstyle, heavy-metal, k-pop, and tango.
+To mitigate the effects of class imbalance and to get better baseline performance from my models, I made the executive decision to handpick 12 of the largest and most diverse genres to use for my machine learning models. Each of these genres had no less than 800 songs. This resulted in a final dataset consisting of 10,843 songs. The genres I selected are: acoustic, alt-rock, blues, classical, country, dance, deep-house, disco, hardstyle, heavy-metal, k-pop, and tango.
 
 ## Feature Engineering
 
@@ -87,21 +87,33 @@ After tuning the hyperparamaters for the different models, these are the highest
 
 We can see that Logistic Regression saw a great increase in performance but still was a ways off from Random Forest and Gradient Boosting. Even with further hyperparameter tuning, I was unable to improve the scores of the Random Forest and Gradient Boosting models. Once I saw that the Gradient Boosting model performed the best, I decided to optimize it further and perform an extensive gridsearch to find the best hyperparameters. In doing so, I was only able to replicate the accuracy I had using the out of box parameters.
 
-Once I
+Once I finished model optimization, I used the Gradient Boosting classifier to predict on unseen data (test set). The results can be seen below in the multiclass confusion matrix. The **accuracy** of the model on the test set was **0.729** with 791 correctly and 294 incorrectly predicted labels.
 
 ![](imgs/confusion_matrix_test_set.png)
 
+Finally, with a fully trained and tested model, I gathered the feature importances for each feature in the dataset.
+
 ![](imgs/mean_decrease_log_loss_feature_importance.png)
 
+In order to mitigate traditional feature importance issues dealing with features with varying amounts of cardinality, I calculated the mean decrease log loss from each feature to determine importance. Log loss was used as the scoring metric since we are working with a multiclass classification problem. In order to calculate the mean decrease log loss per feature, I created stratified shuffle splits, calculated the log loss for each split, and measured the change in log loss when each feature was removed.
+
+The features that were the least important (explicit, key, livness, mode) make sense
 
 ## Summary
 
-a
+The goal of this project is to predict the genre of a song based on its audio features. In a machine learning context, this is a multiclass classification problem.
 
-## Future Questions
+The final dataset that was used to train and test the machine learning models in this project consisted of 10,843 songs spanning 12 different genres.
 
-- Lyric-based genre classification
-- Multi-genre (Multi-label) classification
+The models I tested in this project were kNN, Logistic Regression, Random Forest, and Gradient Boosting. The supervised machine learning model that performed the best was the Gradient Boosting classifier with an accuracy of 72.9% on the test set.
+
+## Future Ideas
+
+This project gave a good baseline for genre classification on single label classification. While this is useful, we know that songs can have multiple genres. Songs are not discreet and do not strictly fall into one genre or another. Looking forward, I would like to try to extend this model to perform multi-genre (multi-label) classification.
+
+Another avenue I'm interested in exploring is lyric-based genre classification. It would be interesting to see if there's enough inherent information in song lyrics to build NLP models that can outperform audio feature models.
+
+If you made it this far, thanks so much for reading!
 
 ## References
 
