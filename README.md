@@ -13,7 +13,7 @@
 ## Overview
 Music is everywhere. As of 2011, it was reported that there are over 79,000,000 documented songs in existence<sup>[1](http://bedtimemath.org/fun-math-songs-in-world/)</sup>. These songs have been classified into hundreds of different genres and subgenres.
 
-[<img src='imgs/music_genre_visualization.png'>](https://www.chess.com/news/view/published-data-api)
+[<img src='imgs/music_genre_visualization.png'>](https://musicmachinery.com/2013/09/22/5025/)
 
 And yet, music is still constantly evolving. Some new genres that are expected to see major growth in 2021 are Synthwave, Ambient music, J-pop, and Nu Disco<sup>[3](https://www.ujam.com/blog/upcoming-music-trends-in-2021/)</sup>. With this constant growth and expansion, it's important for businesses that work with music to be able to reliably track these updates. Spotify, as an example, may find it useful to
 
